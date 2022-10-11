@@ -16,9 +16,9 @@ Available endpoints:
 To run Webapp, run following commands in directory:
 
 ```
-    cd frontend
-    npm install
-    npm start
+cd frontend
+npm install
+npm start
 ```
 
 Webapp will be available on http://localhost:8000.
