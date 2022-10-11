@@ -55,6 +55,7 @@ export const AddTransactionForm: React.FC<IProps> = ({ onSuccessHandler, onError
         registerOptions={{
           required: true,
           valueAsNumber: true,
+          validate: (val) => val > 0,
         }}
         name="amount"
       />

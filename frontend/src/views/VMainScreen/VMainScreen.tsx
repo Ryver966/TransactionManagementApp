@@ -7,6 +7,7 @@ import { NotificationBanner } from '../../components/NotificationBanner/Notifica
 import { ENotificationType } from '../../enums/ENotificationTypes';
 import { INotification } from '../../interfaces/INotification';
 import { AppContext } from '../../store/AppStore';
+import { formatCurrency } from '../../utils/formatNumbers';
 
 export const VMainScreen: React.FC = () => {
   /**
@@ -78,9 +79,9 @@ export const VMainScreen: React.FC = () => {
     <>
       <LoadingModal isVisible={isLoading} />
       <NotificationBanner message={notification} onClose={() => setNotification(null)} />
-      <main className="flex flex-1 flex-col max-w-5xl mx-auto">
+      <main className="flex flex-1 flex-col max-w-5xl mx-auto pt-4">
         <div className="flex flex-col md:flex-row-reverse">
-          <div className="text-white p-4 md:flex-1">
+          <div className="text-white px-4 md:flex-1">
             <AddTransactionForm
               onSuccessHandler={createTransactionOnSuccessHandler}
               onErrorHandler={createTransactionOnErrorHandler}
@@ -88,7 +89,7 @@ export const VMainScreen: React.FC = () => {
           </div>
 
           <div className="md:flex-1">
-            <p>{balance}</p>
+            <p>{formatCurrency(balance)}</p>
           </div>
         </div>
       </main>
