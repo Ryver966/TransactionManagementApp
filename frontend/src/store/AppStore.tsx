@@ -3,11 +3,9 @@ import { IAppStore } from '../interfaces/IAppStore';
 import { ITransaction } from '../interfaces/ITransaction';
 
 const initialState: IAppStore = {
-  errorMsg: '',
   isLoading: false,
   transactions: [],
 
-  setErrorMsg: () => {},
   setIsLoading: () => {},
   setTransactions: () => {},
 };
@@ -20,21 +18,17 @@ export const AppContextProvider: React.FC<PropsWithChildren> = ({ children }) =>
    */
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [errorMsg, setErrorMsg] = useState<string>('');
 
   /**
    * handlers
    */
   const updateIsLoading = (value: boolean) => setIsLoading(value);
   const updateTransactions = (transactions: ITransaction[]) => setTransactions(transactions);
-  const updateErrorMsg = (value: string) => setErrorMsg(value);
 
   const value: IAppStore = {
-    errorMsg,
     isLoading,
     transactions,
 
-    setErrorMsg: updateErrorMsg,
     setIsLoading: updateIsLoading,
     setTransactions: updateTransactions,
   };
