@@ -1,6 +1,8 @@
 import { AxiosError } from 'axios';
+import { useContext } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { TransactionApi } from '../../apis/Transaction';
+import { AppContext } from '../../store/AppStore';
 import { Button } from '../Button/Button';
 import { InputField } from '../InputField/InputField';
 
@@ -20,6 +22,7 @@ export const AddTransactionForm: React.FC<IProps> = ({ onSuccessHandler, onError
   /**
    * variables
    */
+  const { setTransactions } = useContext(AppContext);
   const {
     register,
     handleSubmit,
@@ -33,7 +36,9 @@ export const AddTransactionForm: React.FC<IProps> = ({ onSuccessHandler, onError
   const onSubmit: SubmitHandler<IAddTransactionFormValues> = async (data) => {
     try {
       await TransactionApi.create(data as any);
+      const transactionsList = await TransactionApi.get({});
 
+      setTransactions(transactionsList);
       onSuccessHandler();
       reset();
     } catch (e) {
