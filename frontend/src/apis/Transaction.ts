@@ -12,6 +12,16 @@ class API extends ApiBase<ITransaction> {
     const response = await this.axiosInstance.get(url);
     return response.data;
   }
+
+  async create(data: Omit<ITransaction, 'id' | 'date'>) {
+    const body = {
+      ...data,
+      date: new Date(),
+    };
+    const response = await this.axiosInstance.post(this.resourceUrl, body);
+
+    return response;
+  }
 }
 
 export const TransactionApi = new API('/transactions');
