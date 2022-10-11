@@ -10,7 +10,8 @@ class API extends ApiBase<ITransaction> {
     }
 
     const response = await this.axiosInstance.get(url);
+    return response.data;
   }
 }
 
-export const AssetsApi = new API('/transactions');
+export const TransactionApi = new API('/transactions');
