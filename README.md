@@ -22,3 +22,11 @@ npm start
 ```
 
 Webapp will be available on http://localhost:8000.
+
+To run tests, run following commands in directory:
+
+```
+cd frontend
+npm install
+npm test
+```
