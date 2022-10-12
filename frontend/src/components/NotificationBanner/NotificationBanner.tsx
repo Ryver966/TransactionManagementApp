@@ -15,9 +15,9 @@ export const NotificationBanner: React.FC<IProps> = ({ message, onClose }) => {
 
   return (
     <div
-      className={cx('absolute top-4 left-1/2 rounded transform -translate-x-1/2 w-full max-w-lg mx-10 p-8', {
-        'bg-red': message.type === ENotificationType.Error,
-        'bg-green': message.type === ENotificationType.Success,
+      className={cx('absolute top-4 left-1/2 rounded transform -translate-x-1/2 w-full max-w-lg mx-10 p-8 border-2', {
+        'bg-red-light border-red': message.type === ENotificationType.Error,
+        'bg-green-light border-green': message.type === ENotificationType.Success,
       })}
     >
       <button onClick={onClose} className="w-8 h-8 absolute right-2 top-4">

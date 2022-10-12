@@ -2,7 +2,6 @@ import { AxiosError } from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { TransactionApi } from '../../apis/Transaction';
 import { AddTransactionForm } from '../../components/forms/AddTransactionForm';
-import { LoadingModal } from '../../components/LoadingModal/LodaingModal';
 import { NotificationBanner } from '../../components/NotificationBanner/NotificationBanner';
 import { ENotificationType } from '../../enums/ENotificationTypes';
 import { INotification } from '../../interfaces/INotification';
@@ -13,7 +12,7 @@ export const VMainScreen: React.FC = () => {
   /**
    * variables
    */
-  const { isLoading, transactions, setIsLoading, setTransactions } = useContext(AppContext);
+  const { transactions, setTransactions } = useContext(AppContext);
   const [notification, setNotification] = useState<INotification | null>(null);
   const balance = transactions.reduce((acc, x) => (acc += x?.amount), 0);
 
@@ -45,21 +44,16 @@ export const VMainScreen: React.FC = () => {
    */
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true);
       try {
         const transactionsList = await TransactionApi.get({});
 
         setTransactions(transactionsList);
-        setTimeout(() => setIsLoading(false), 1000);
       } catch (e) {
         const err = e as AxiosError;
-        setTimeout(() => {
-          setIsLoading(false);
-          setNotification({
-            type: ENotificationType.Error,
-            text: err.message || 'Unknown error',
-          });
-        }, 1000);
+        setNotification({
+          type: ENotificationType.Error,
+          text: err.message || 'Unknown error',
+        });
 
         setTimeout(() => {
           if (notification) {
@@ -77,7 +71,6 @@ export const VMainScreen: React.FC = () => {
    */
   return (
     <>
-      <LoadingModal isVisible={isLoading} />
       <NotificationBanner message={notification} onClose={() => setNotification(null)} />
       <main className="flex flex-1 flex-col max-w-5xl mx-auto pt-4">
         <div className="flex flex-col md:flex-row-reverse">
