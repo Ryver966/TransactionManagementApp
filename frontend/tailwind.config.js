@@ -15,6 +15,7 @@ module.exports = {
       white: '#ffffff',
     },
     fontSize: {
+      xs: ['12px', { lineHeight: '16px' }],
       sm: ['14px', { lineHeight: '20px' }],
       base: ['16px', { lineHeight: '24px' }],
       lg: ['24px', { lineHeight: '32px' }],
