@@ -4,6 +4,6 @@ export interface ITransaction {
   beneficiary: string;
   account: string;
   address: string;
-  date: Date;
+  date: string;
   description: string;
 }

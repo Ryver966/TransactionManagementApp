@@ -6,11 +6,7 @@ export const FilterTransactions: React.FC = () => {
   /**
    * variables
    */
-  const { filterTerm, setTransactions, setFilterTerm } = useContext(AppContext);
-
-  /**
-   * effects
-   */
+  const { filterTerm, setFilterTerm } = useContext(AppContext);
 
   /**
    * renderer
