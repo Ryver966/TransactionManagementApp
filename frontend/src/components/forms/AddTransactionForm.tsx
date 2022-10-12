@@ -1,14 +1,13 @@
 import { AxiosError } from 'axios';
-import { useContext } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { TransactionApi } from '../../apis/Transaction';
-import { AppContext } from '../../store/AppStore';
 import { Button } from '../Button/Button';
 import { InputField } from '../InputField/InputField';
 
 export interface IAddTransactionFormValues {
   amount: number;
   account: number;
+  beneficiary: string;
   address: string;
   description: string;
 }
@@ -22,7 +21,6 @@ export const AddTransactionForm: React.FC<IProps> = ({ onSuccessHandler, onError
   /**
    * variables
    */
-  const { setTransactions } = useContext(AppContext);
   const {
     register,
     handleSubmit,
@@ -48,7 +46,7 @@ export const AddTransactionForm: React.FC<IProps> = ({ onSuccessHandler, onError
    * renderer
    */
   return (
-    <form className="flex flex-col items-center" onSubmit={handleSubmit(onSubmit)}>
+    <form className="flex flex-col items-center text-xs md:text-sm" onSubmit={handleSubmit(onSubmit)}>
       <InputField
         className="mb-4 w-full max-w-md"
         placeholder="Amount"
@@ -68,6 +66,13 @@ export const AddTransactionForm: React.FC<IProps> = ({ onSuccessHandler, onError
         register={register}
         registerOptions={{ required: true, valueAsNumber: true }}
         name="account"
+      />
+      <InputField
+        className="mb-4 w-full max-w-md"
+        placeholder="Beneficiary"
+        register={register}
+        registerOptions={{ required: true }}
+        name="beneficiary"
       />
       <InputField
         className="mb-4 w-full max-w-md"
