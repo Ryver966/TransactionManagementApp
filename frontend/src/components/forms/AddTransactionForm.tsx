@@ -36,9 +36,6 @@ export const AddTransactionForm: React.FC<IProps> = ({ onSuccessHandler, onError
   const onSubmit: SubmitHandler<IAddTransactionFormValues> = async (data) => {
     try {
       await TransactionApi.create(data as any);
-      const transactionsList = await TransactionApi.get({});
-
-      setTransactions(transactionsList);
       onSuccessHandler();
       reset();
     } catch (e) {
