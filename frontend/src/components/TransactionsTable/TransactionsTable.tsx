@@ -38,12 +38,15 @@ export const TransactionsTable: React.FC<IProps> = ({ onSuccessHandler, onErrorH
     <div className="flex flex-col items-center w-full">
       <table className="max-h-96 text-xs lg:text-sm mb-4 w-full text-center">
         <thead>
-          <th>Amount</th>
-          <th>Beneficiary</th>
-          <th>Address</th>
-          <th className="hidden xl:block">Description</th>
-          <th>Date</th>
+          <tr>
+            <th>Amount</th>
+            <th>Beneficiary</th>
+            <th>Address</th>
+            <th className="hidden xl:block">Description</th>
+            <th>Date</th>
+          </tr>
         </thead>
+
         <tbody>
           {transactions.map((t) => (
             <tr key={t.id} className="align-middleh-auto ">
